@@ -1,3 +1,2 @@
-# Advanced-React
+# bookNote Frontend
 
-frontend
