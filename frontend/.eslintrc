@@ -10,6 +10,10 @@
       ],
       "import/imports-first": ["error", "absolute-first"],
       "import/newline-after-import": "error",
+      // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md#rule-details
+      "jsx-a11y/anchor-is-valid": [ "error", {
+        "aspects": [ "invalidHref" ]
+      }],
       "prettier/prettier": [
         "error",
         {
