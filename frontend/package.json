@@ -38,13 +38,22 @@
     "waait": "^1.0.5"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "casual": "^1.6.2",
     "enzyme-to-json": "^3.4.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
     "graphql-tools": "^4.0.5",
     "jest": "^24.8.0",
-    "jest-transform-graphql": "^2.1.0"
+    "jest-transform-graphql": "^2.1.0",
+    "prettier": "^1.18.2"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.js",
