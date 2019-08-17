@@ -1,6 +1,6 @@
 {
     "extends": ["airbnb", "prettier", "prettier/react"],
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "react-hooks"],
     "rules": {
       "react/jsx-filename-extension": [
         1,
@@ -8,6 +8,8 @@
           "extensions": [".js", ".jsx"]
         }
       ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "import/imports-first": ["error", "absolute-first"],
       "import/newline-after-import": "error",
       // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md#rule-details
