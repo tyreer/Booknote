@@ -5,7 +5,7 @@ const Meta = () => (
     <title>bookNote</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta charSet="utf8" />
-    <link rel="favicon" href="/static/favicon.ico" />
+    <link rel="favicon" type="image/x-icon" href="/static/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
   </Head>
 );
