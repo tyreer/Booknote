@@ -25,19 +25,30 @@ const Inner = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
+
+@font-face {
+  font-family: 'inter', sans-serif;
+  src:  url('/static/inter-font/Inter-Regular.woff2') format('woff2'),
+        url('/static/inter-font/Inter-Regular.woff') format('woff');
+  }
+
   html {
     box-sizing: border-box;
     font-size: 10px;
   }
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
+
   body {
     padding: 0;
     margin: 0;
     font-size: 1.6rem;
     line-height: 2;
+    font-family: 'inter';
   }
+  
   a {
     text-decoration: none;
     color: ${props => props.theme.black};
