@@ -1,5 +1,6 @@
 import { node } from 'prop-types';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { normalize } from 'styled-normalize';
 import Meta from './Meta';
 
 const theme = {
@@ -25,6 +26,7 @@ const Inner = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
+ ${normalize}
 
 @font-face {
   font-family: 'inter', sans-serif;
@@ -43,7 +45,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     padding: 0;
-    margin: 0;
     font-size: 1.6rem;
     line-height: 2;
     font-family: 'inter';
