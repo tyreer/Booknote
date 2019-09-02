@@ -1,10 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
 
-const Index = () => (
-  <Link href="/login">
-    <a>Login</a>
-  </Link>
-);
+const Index = () => <h1>Index, who dis</h1>;
 
 export default Index;

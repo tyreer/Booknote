@@ -1,10 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
 
-const Login = () => (
-  <Link href="/">
-    <a>Home</a>
-  </Link>
-);
+const Login = () => <h1>Login, who dis</h1>;
 
 export default Login;

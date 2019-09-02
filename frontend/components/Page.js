@@ -2,6 +2,7 @@ import { node } from 'prop-types';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import Meta from './Meta';
+import Header from './Header';
 
 const theme = {
   black: 'black',
@@ -66,6 +67,7 @@ const Page = ({ children }) => (
     <StyledPage>
       <Meta />
       <GlobalStyle />
+      <Header />
       <Inner>{children}</Inner>
     </StyledPage>
   </ThemeProvider>
