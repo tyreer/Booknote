@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 const Meta = () => (
   <Head>
-    <title>bookNote</title>
+    <title>Booknote</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta charSet="utf8" />
     <link rel="favicon" type="image/x-icon" href="/static/favicon.ico" />

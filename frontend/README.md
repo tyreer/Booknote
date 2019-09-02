@@ -1,2 +1,2 @@
-# bookNote Frontend
+# Booknote Frontend
 

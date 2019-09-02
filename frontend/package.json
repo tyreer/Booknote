@@ -1,7 +1,7 @@
 {
   "name": "book-note-frontend",
   "version": "1.0.0",
-  "description": "bookNote is an app that helps you remember what you've read",
+  "description": "Booknote is an app that helps you remember what you've read",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
