@@ -2,6 +2,8 @@
 
 ## Prisma
 
+A GraphQL data interface
+
 __Prisma__ is a Data Access Layer (DAL)
 
 - This allows for a [__clean and layered architecture__](https://www.prisma.io/docs/understand-prisma/prisma-introduction-what-why-how-j9ff/#clean-and-layered-architecture)
@@ -52,3 +54,11 @@ __How does Prisma fit into your stack?__
 - If you had an existing database, you'd need to configure your Prisma server to work with it.
 
 - In the end of the Bos course, we deploy the Prisma server to Heroku or Now, but to start Prisma manages the hosting of the Prisma server on Prisma Cloud.
+
+## GraphQL Yoga
+
+An Express GraphQL Server
+
+- Allows for the various bits of logic to be specified and executed (security layer, authentication layer) prior to being sent to the Prisma server/database.
+
+- `schema.graphql` allows us to selectively expose which parts of the Prisma API we want to be accessible to the frontend
