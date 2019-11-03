@@ -1,6 +1,48 @@
+enum Permission {
+  ADMIN
+  USER
+  ITEMCREATE
+  ITEMUPDATE
+  ITEMDELETE
+  PERMISSIONUPDATE
+}
+
 type User {
-  id: ID! @id
+  id: ID! @unique @id
   name: String
   email: String! @unique
+  # password: String!
+  # resetToken: String
+  # resetTokenExpiry: Float
+  # permissions: [Permission] @scalarList(strategy: RELATION)
 }
  
+type Note {
+  id: ID! @unique @id
+  source: Source!
+  text: String!
+  image: String
+  largeImage: String
+  private: Boolean
+  # user: User!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Source {
+  id: ID! @unique @id
+  notes: [Note!]! @scalarList(strategy: RELATION)
+  authors: [String!]! @scalarList(strategy: RELATION)
+  publication: DateTime!
+  link: String
+  relatedReferences: [RelatedReference!] @scalarList(strategy: RELATION)
+  user: User!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type RelatedReference {
+  id: ID! @unique @id
+  title: String!
+  link: String!
+}
