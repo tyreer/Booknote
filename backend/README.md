@@ -62,10 +62,21 @@ An Express GraphQL Server
 - Allows for the various bits of logic to be specified and executed (security layer, authentication layer) prior to being sent to the Prisma server/database.
 
 - `schema.graphql` allows us to selectively expose which parts of the Prisma CRUD API we want to be accessible to the frontend
+  
   - We'll import the generated Prisma schema and compose what aspects of that schema we want to make accessible to the client via our Yoga server  
+  
+  - To access the types generated via the Prisma schema, we use an odd import-via-comment syntax: `# import * from './generated/prisma.graphql'`
 
 - We use the `context` param to make the Prisma data base accessible directly on our Yoga mutation and query logic
 
 ```js
 context: req => ({ ...req, db }),
+```
+
+- To use a query directly from the Prisma schema without applying any custom logic, we use the `forwardTo` binding
+
+```js
+const Query = {
+  notes: forwardTo('db'),
+}
 ```
