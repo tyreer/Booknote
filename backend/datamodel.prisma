@@ -19,7 +19,7 @@ type User {
  
 type Note {
   id: ID! @unique @id
-  source: Source!
+  # source: Source!
   text: String!
   image: String
   largeImage: String

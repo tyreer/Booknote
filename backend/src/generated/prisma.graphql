@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/robert-tyree/Booknote/dev
-# timestamp: Sun Nov 03 2019 13:40:54 GMT+0000 (Greenwich Mean Time)
+# timestamp: Sun Nov 10 2019 17:48:46 GMT+0000 (Greenwich Mean Time)
 
 type AggregateNote {
   count: Int!
@@ -31,29 +31,29 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createNote(data: NoteCreateInput!): Note!
   createSource(data: SourceCreateInput!): Source!
   createUser(data: UserCreateInput!): User!
+  createNote(data: NoteCreateInput!): Note!
   createRelatedReference(data: RelatedReferenceCreateInput!): RelatedReference!
-  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
   updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
   updateRelatedReference(data: RelatedReferenceUpdateInput!, where: RelatedReferenceWhereUniqueInput!): RelatedReference
-  deleteNote(where: NoteWhereUniqueInput!): Note
   deleteSource(where: SourceWhereUniqueInput!): Source
   deleteUser(where: UserWhereUniqueInput!): User
+  deleteNote(where: NoteWhereUniqueInput!): Note
   deleteRelatedReference(where: RelatedReferenceWhereUniqueInput!): RelatedReference
-  upsertNote(where: NoteWhereUniqueInput!, create: NoteCreateInput!, update: NoteUpdateInput!): Note!
   upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertNote(where: NoteWhereUniqueInput!, create: NoteCreateInput!, update: NoteUpdateInput!): Note!
   upsertRelatedReference(where: RelatedReferenceWhereUniqueInput!, create: RelatedReferenceCreateInput!, update: RelatedReferenceUpdateInput!): RelatedReference!
-  updateManyNotes(data: NoteUpdateManyMutationInput!, where: NoteWhereInput): BatchPayload!
   updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyNotes(data: NoteUpdateManyMutationInput!, where: NoteWhereInput): BatchPayload!
   updateManyRelatedReferences(data: RelatedReferenceUpdateManyMutationInput!, where: RelatedReferenceWhereInput): BatchPayload!
-  deleteManyNotes(where: NoteWhereInput): BatchPayload!
   deleteManySources(where: SourceWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyNotes(where: NoteWhereInput): BatchPayload!
   deleteManyRelatedReferences(where: RelatedReferenceWhereInput): BatchPayload!
 }
 
@@ -71,7 +71,6 @@ interface Node {
 
 type Note implements Node {
   id: ID!
-  source: Source!
   text: String!
   image: String
   largeImage: String
@@ -96,20 +95,11 @@ input NoteCreateInput {
   image: String
   largeImage: String
   private: Boolean
-  source: SourceCreateOneWithoutNotesInput!
 }
 
-input NoteCreateManyWithoutSourceInput {
-  create: [NoteCreateWithoutSourceInput!]
+input NoteCreateManyInput {
+  create: [NoteCreateInput!]
   connect: [NoteWhereUniqueInput!]
-}
-
-input NoteCreateWithoutSourceInput {
-  id: ID
-  text: String!
-  image: String
-  largeImage: String
-  private: Boolean
 }
 
 """An edge in a connection."""
@@ -404,12 +394,18 @@ input NoteSubscriptionWhereInput {
   node: NoteWhereInput
 }
 
+input NoteUpdateDataInput {
+  text: String
+  image: String
+  largeImage: String
+  private: Boolean
+}
+
 input NoteUpdateInput {
   text: String
   image: String
   largeImage: String
   private: Boolean
-  source: SourceUpdateOneRequiredWithoutNotesInput
 }
 
 input NoteUpdateManyDataInput {
@@ -419,6 +415,18 @@ input NoteUpdateManyDataInput {
   private: Boolean
 }
 
+input NoteUpdateManyInput {
+  create: [NoteCreateInput!]
+  connect: [NoteWhereUniqueInput!]
+  set: [NoteWhereUniqueInput!]
+  disconnect: [NoteWhereUniqueInput!]
+  delete: [NoteWhereUniqueInput!]
+  update: [NoteUpdateWithWhereUniqueNestedInput!]
+  updateMany: [NoteUpdateManyWithWhereNestedInput!]
+  deleteMany: [NoteScalarWhereInput!]
+  upsert: [NoteUpsertWithWhereUniqueNestedInput!]
+}
+
 input NoteUpdateManyMutationInput {
   text: String
   image: String
@@ -426,39 +434,20 @@ input NoteUpdateManyMutationInput {
   private: Boolean
 }
 
-input NoteUpdateManyWithoutSourceInput {
-  create: [NoteCreateWithoutSourceInput!]
-  connect: [NoteWhereUniqueInput!]
-  set: [NoteWhereUniqueInput!]
-  disconnect: [NoteWhereUniqueInput!]
-  delete: [NoteWhereUniqueInput!]
-  update: [NoteUpdateWithWhereUniqueWithoutSourceInput!]
-  updateMany: [NoteUpdateManyWithWhereNestedInput!]
-  deleteMany: [NoteScalarWhereInput!]
-  upsert: [NoteUpsertWithWhereUniqueWithoutSourceInput!]
-}
-
 input NoteUpdateManyWithWhereNestedInput {
   where: NoteScalarWhereInput!
   data: NoteUpdateManyDataInput!
 }
 
-input NoteUpdateWithoutSourceDataInput {
-  text: String
-  image: String
-  largeImage: String
-  private: Boolean
+input NoteUpdateWithWhereUniqueNestedInput {
+  where: NoteWhereUniqueInput!
+  data: NoteUpdateDataInput!
 }
 
-input NoteUpdateWithWhereUniqueWithoutSourceInput {
+input NoteUpsertWithWhereUniqueNestedInput {
   where: NoteWhereUniqueInput!
-  data: NoteUpdateWithoutSourceDataInput!
-}
-
-input NoteUpsertWithWhereUniqueWithoutSourceInput {
-  where: NoteWhereUniqueInput!
-  update: NoteUpdateWithoutSourceDataInput!
-  create: NoteCreateWithoutSourceInput!
+  update: NoteUpdateDataInput!
+  create: NoteCreateInput!
 }
 
 input NoteWhereInput {
@@ -678,7 +667,6 @@ input NoteWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
-  source: SourceWhereInput
 }
 
 input NoteWhereUniqueInput {
@@ -701,17 +689,17 @@ type PageInfo {
 }
 
 type Query {
-  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note]!
   sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note]!
   relatedReferences(where: RelatedReferenceWhereInput, orderBy: RelatedReferenceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RelatedReference]!
-  note(where: NoteWhereUniqueInput!): Note
   source(where: SourceWhereUniqueInput!): Source
   user(where: UserWhereUniqueInput!): User
+  note(where: NoteWhereUniqueInput!): Note
   relatedReference(where: RelatedReferenceWhereUniqueInput!): RelatedReference
-  notesConnection(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NoteConnection!
   sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  notesConnection(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NoteConnection!
   relatedReferencesConnection(where: RelatedReferenceWhereInput, orderBy: RelatedReferenceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RelatedReferenceConnection!
 
   """Fetches an object given its ID"""
@@ -1154,21 +1142,7 @@ input SourceCreateInput {
   publication: DateTime!
   link: String
   authors: SourceCreateauthorsInput
-  notes: NoteCreateManyWithoutSourceInput
-  relatedReferences: RelatedReferenceCreateManyInput
-  user: UserCreateOneInput!
-}
-
-input SourceCreateOneWithoutNotesInput {
-  create: SourceCreateWithoutNotesInput
-  connect: SourceWhereUniqueInput
-}
-
-input SourceCreateWithoutNotesInput {
-  id: ID
-  publication: DateTime!
-  link: String
-  authors: SourceCreateauthorsInput
+  notes: NoteCreateManyInput
   relatedReferences: RelatedReferenceCreateManyInput
   user: UserCreateOneInput!
 }
@@ -1249,7 +1223,7 @@ input SourceUpdateInput {
   publication: DateTime
   link: String
   authors: SourceUpdateauthorsInput
-  notes: NoteUpdateManyWithoutSourceInput
+  notes: NoteUpdateManyInput
   relatedReferences: RelatedReferenceUpdateManyInput
   user: UserUpdateOneRequiredInput
 }
@@ -1258,26 +1232,6 @@ input SourceUpdateManyMutationInput {
   publication: DateTime
   link: String
   authors: SourceUpdateauthorsInput
-}
-
-input SourceUpdateOneRequiredWithoutNotesInput {
-  create: SourceCreateWithoutNotesInput
-  connect: SourceWhereUniqueInput
-  update: SourceUpdateWithoutNotesDataInput
-  upsert: SourceUpsertWithoutNotesInput
-}
-
-input SourceUpdateWithoutNotesDataInput {
-  publication: DateTime
-  link: String
-  authors: SourceUpdateauthorsInput
-  relatedReferences: RelatedReferenceUpdateManyInput
-  user: UserUpdateOneRequiredInput
-}
-
-input SourceUpsertWithoutNotesInput {
-  update: SourceUpdateWithoutNotesDataInput!
-  create: SourceCreateWithoutNotesInput!
 }
 
 input SourceWhereInput {
@@ -1449,9 +1403,9 @@ input SourceWhereUniqueInput {
 }
 
 type Subscription {
-  note(where: NoteSubscriptionWhereInput): NoteSubscriptionPayload
   source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  note(where: NoteSubscriptionWhereInput): NoteSubscriptionPayload
   relatedReference(where: RelatedReferenceSubscriptionWhereInput): RelatedReferenceSubscriptionPayload
 }
 
