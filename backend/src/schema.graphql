@@ -1,7 +1,9 @@
+# import * from './generated/prisma.graphql'
+
 type Mutation {
-    yo: String
+    createNote(text: String, image: String, largeImage: String, private: Boolean): Note!
 }
 
 type Query {
-    yo: String
+    notes: [Note]!
 }

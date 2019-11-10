@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const createServer = require('./createServer');
-const db = require('./db');
 
 const server = createServer();
 
@@ -16,6 +15,6 @@ server.start(
     },
   },
   details => {
-    console.log(`Logging these ${details.port}`);
+    console.log(`Logging the port details ${details.port}`);
   }
 );
